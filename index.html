@@ -4,20 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DASC Knowledge Hub</title>
+
+  <!-- PWA Manifest and Theme -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#000000" />
-</head>
-<body style="margin:0; padding:0;">
-  <iframe src="https://discordaccountsupportcorporation.slab.com" style="width:100%; height:100vh; border:none;"></iframe>
 
+  <!-- Auto-redirect to Slab -->
+  <meta http-equiv="refresh" content="0; url='https://discordaccountsupportcorporation.slab.com'" />
+
+  <!-- Optional fallback for browsers without meta-refresh support -->
   <script>
+    if (!window.location.href.includes('discordaccountsupportcorporation.slab.com')) {
+      window.location.href = 'https://discordaccountsupportcorporation.slab.com';
+    }
+
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('Service Worker registered:', registration.scope);
-      }).catch(function(error) {
-        console.error('Service Worker registration failed:', error);
-      });
+      navigator.serviceWorker.register('/sw.js')
+        .then(function(reg) {
+          console.log('Service Worker registered with scope:', reg.scope);
+        }).catch(function(error) {
+          console.error('Service Worker registration failed:', error);
+        });
     }
   </script>
+</head>
+<body>
+  <p>Redirecting to DASC Knowledge Hub...</p>
 </body>
 </html>
