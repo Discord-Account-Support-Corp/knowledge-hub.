@@ -5,45 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DASC Knowledge Hub</title>
 
-  <!-- PWA manifest & theme -->
+  <!-- PWA Essentials -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#000000" />
-  
-  <!-- Redirect -->
-  <meta http-equiv="refresh" content="3; url='https://discordaccountsupportcorporation.slab.com'" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- Service worker -->
+  <!-- Redirect after 2s -->
+  <meta http-equiv="refresh" content="2; url='https://discordaccountsupportcorporation.slab.com'" />
+
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(function(reg) {
-        console.log('Service Worker registered with scope:', reg.scope);
-      });
-    }
-
-    // Manual fallback if meta-refresh fails
+    // JS fallback redirect in case meta doesn't work
     setTimeout(() => {
       if (!window.location.href.includes('slab.com')) {
         window.location.href = 'https://discordaccountsupportcorporation.slab.com';
       }
-    }, 5000);
+    }, 4000);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
+        console.log('Service Worker registered:', reg.scope);
+      }).catch(function(err) {
+        console.warn('SW failed:', err);
+      });
+    }
   </script>
 
   <style>
     body {
       font-family: system-ui, sans-serif;
       text-align: center;
-      padding: 2rem;
-      background: #f5f5f5;
-      color: #333;
+      background: #f2f2f2;
+      color: #222;
+      padding: 3rem;
     }
     a {
-      color: #007bff;
+      color: #0078d7;
       text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Redirecting to DASC Knowledge Hub...</h1>
-  <p>If you are not redirected, <a href="https://discordaccountsupportcorporation.slab.com">click here</a>.</p>
+  <h2>Opening Knowledge Hub...</h2>
+  <p>If not redirected, <a href="https://discordaccountsupportcorporation.slab.com">tap here</a>.</p>
 </body>
 </html>
