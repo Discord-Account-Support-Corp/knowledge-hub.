@@ -5,50 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DASC Knowledge Hub</title>
 
-  <!-- PWA Meta Tags -->
+  <!-- PWA Essentials -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#000000" />
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- Service Worker -->
+  <!-- Redirect after 2s -->
+  <meta http-equiv="refresh" content="2; url='https://discordaccountsupportcorporation.slab.com'" />
+
   <script>
+    // JS fallback redirect in case meta doesn't work
+    setTimeout(() => {
+      if (!window.location.href.includes('slab.com')) {
+        window.location.href = 'https://discordaccountsupportcorporation.slab.com';
+      }
+    }, 4000);
+
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').then(function(reg) {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
         console.log('Service Worker registered:', reg.scope);
-      }).catch(function(error) {
-        console.warn('Service Worker registration failed:', error);
+      }).catch(function(err) {
+        console.warn('SW failed:', err);
       });
     }
   </script>
 
-  <!-- Clean Auto-Redirect -->
-  <script>
-    window.addEventListener('load', () => {
-      window.location.replace("https://discordaccountsupportcorporation.slab.com");
-    });
-  </script>
-
   <style>
     body {
-      margin: 0;
-      padding: 0;
       font-family: system-ui, sans-serif;
-      background: #000;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       text-align: center;
+      background: #f2f2f2;
+      color: #222;
+      padding: 3rem;
     }
-    .loading {
-      font-size: 1.2rem;
+    a {
+      color: #0078d7;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="loading">Launching Knowledge Hub…</div>
+  <h2>Opening Knowledge Hub...</h2>
+  <p>If not redirected, <a href="https://discordaccountsupportcorporation.slab.com">tap here</a>.</p>
 </body>
 </html>
